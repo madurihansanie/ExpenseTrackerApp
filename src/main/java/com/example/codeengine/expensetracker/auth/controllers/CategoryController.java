@@ -35,5 +35,16 @@ private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.
     return optionalCategory.map(response->ResponseEntity.ok().body(response) )
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 }
-
+@PutMapping("/category/{id}" )
+    ResponseEntity<Category> updateCategory(@RequestBody CategoryRequest categoryRequest){
+    Category category= new Category();
+    category.setName(categoryRequest.getName());
+    Category result = categoryRepository.save(category);
+    return ResponseEntity.ok().body(result);
+}
+@DeleteMapping("/category/{id}")
+    ResponseEntity<?> deleteCategory(@PathVariable Long id){
+    categoryRepository.deleteById(id);
+    return ResponseEntity.ok().build();
+}
 }
