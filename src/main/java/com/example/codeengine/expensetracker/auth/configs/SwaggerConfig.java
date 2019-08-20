@@ -23,16 +23,8 @@ public class SwaggerConfig {
                  .select()
                  .apis(RequestHandlerSelectors.basePackage("com.example.codeengine.expensetracker.auth")) //.apis(RequestHandlerSelectors.any())
                  .paths(PathSelectors.any()) //paths(PathSelectors.any())
-            .build()
-                 .apiInfo(apiInfo());
+            .build();
+
     }
-    private ApiInfo apiInfo() {
-        return new ApiInfo(
-                "ADL Expense Tracker App",
-                "ADL Expense Tracker App service REST API Documentation.",
-                "API TOS",
-                "http://www-03.ibm.com/software/sla/sladb.nsf/sla/bm?Open",
-                new Contact("Software Team", "www.dialog.lk", "SoftwareTeam@dialog.lk"),
-                "Apache License Version 2.0", "https://github.com/IBM-Bluemix/news-aggregator/blob/master/LICENSE");
-    }
+
 }
