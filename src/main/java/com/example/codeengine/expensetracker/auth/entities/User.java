@@ -28,11 +28,8 @@ public class User {
     @UpdateTimestamp
     @Column(name = "updated", nullable = false)
     private Date updateDate;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
-    private Set<Category> categorySet  ;
 
-    public User(Long id, String firstName, String secondName, String email) {
-        this.id = id;
+    public User( String firstName, String secondName, String email) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;

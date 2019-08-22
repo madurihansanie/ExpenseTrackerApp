@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -19,7 +22,7 @@ public class CategoryController {
 private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 @Autowired
     CategoryRepository categoryRepository;
-@PostMapping(value="/category")
+@PostMapping(value="/category/save")
     ResponseEntity<Category> createCategory(@RequestBody CategoryRequest categoryRequest){
     LOGGER.info("createCategory -> ".concat(categoryRequest.getName()));
     Category category= new Category();
@@ -47,4 +50,37 @@ private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.
     categoryRepository.deleteById(id);
     return ResponseEntity.ok().build();
 }
+@GetMapping("/category2")
+    public Map<String,Object> getApps2(){
+    Map<String,Object> response= new HashMap<>();
+    LOGGER.info("Get all categories");
+    try{
+        List<Category> categoryList= categoryRepository.findAll();
+        response.put("Status","Success");
+        response.put("Data",categoryList);
+    }
+    catch (Exception ex){
+        response.put("Status","Failed");
+        response.put("Message",ex.toString());
+    }
+    return response;
+}
+@GetMapping("/category")
+public List<Category> getApps(){
+    Map<String,Object> response= new HashMap<>();
+    LOGGER.info("Get all categories");
+    List<Category> categoryList= categoryRepository.findAll();
+    try{
+
+        response.put("Status","Success");
+        response.put("Data",categoryList);
+    }
+    catch (Exception ex){
+        response.put("Status","Failed");
+        response.put("Message",ex.toString());
+    }
+//    categoryList.forEach((key) -> System.out.println(key ));
+    return categoryList;
+}
+
 }

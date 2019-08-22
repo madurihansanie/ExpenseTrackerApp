@@ -14,7 +14,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private User user;
 
+
+    public Category(String name) {
+        this.name = name;
+    }
 }

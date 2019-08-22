@@ -1,5 +1,6 @@
 package com.example.codeengine.expensetracker.auth.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -20,8 +21,19 @@ public class Expense {
     @Column(name = "expense_date", nullable = false)
     private Date expenseDate;
     private String description;
+    private String location;
     @ManyToOne
     private Category category;
+
     @ManyToOne
+    @JsonIgnore
     private User user;
+
+    public Expense(String description, String location, Category category, User user){
+        this.description=description;
+        this.location=location;
+        this.category=category;
+        this.user=user;
+    }
+
 }
