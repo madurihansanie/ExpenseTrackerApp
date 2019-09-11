@@ -9,5 +9,6 @@ import lombok.Setter;
 public class CategoryRequest {
     @JsonProperty("category_name")
     private String name;
+    private Double testing;
 
 }

@@ -27,6 +27,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.
     LOGGER.info("createCategory -> ".concat(categoryRequest.getName()));
     Category category= new Category();
     category.setName(categoryRequest.getName());
+    category.setTest(categoryRequest.getTesting());
     categoryRepository.save(category);
     LOGGER.info("createCategory -> Success");
     return ResponseEntity.ok().body(category);
@@ -71,7 +72,6 @@ public List<Category> getApps(){
     LOGGER.info("Get all categories");
     List<Category> categoryList= categoryRepository.findAll();
     try{
-
         response.put("Status","Success");
         response.put("Data",categoryList);
     }

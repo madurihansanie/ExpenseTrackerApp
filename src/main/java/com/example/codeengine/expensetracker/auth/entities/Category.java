@@ -14,9 +14,14 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private Double test;
 
 
     public Category(String name) {
         this.name = name;
+    }
+    public Category(String name, Double test) {
+        this.name = name;
+        this.test =test;
     }
 }
